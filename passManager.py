@@ -6,9 +6,9 @@ from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from cryptography.fernet import Fernet
 
-#TODO ---------------------------------------------------------------------------- #
-#TODO                                  Color part                                  #
-#TODO ---------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+#                                  Color part                                  #
+# ---------------------------------------------------------------------------- #
 
 
 class bcolors:
@@ -25,16 +25,16 @@ class bcolors:
     UNDERLINE_GREEN = '\033[4m\033[92m'
     UNDERLINE_FAIL = '\033[4m\033[91m'
 
-#TODO ---------------------------------------------------------------------------- #
-#TODO                                Function part                                 #
-#TODO ---------------------------------------------------------------------------- #
+# ---------------------------------------------------------------------------- #
+#                               Function part                                 #
+# ---------------------------------------------------------------------------- #
 
 
-#~---------------------------------------------------------------------- #
-#~                             cryptography                              #
-#~---------------------------------------------------------------------- #
+#---------------------------------------------------------------------- #
+#                             cryptography                              #
+#---------------------------------------------------------------------- #
 
-#^ ------------------- key function ------------------ #
+# ------------------- key function ------------------ #
 def get_key (passwordP):
     password_provised = passwordP
     password = password_provised.encode()
@@ -50,20 +50,20 @@ def get_key (passwordP):
 
     return key
 
-#^ ------------------ encode function ----------------- #
+# ------------------ encode function ----------------- #
 def encode_message (key, message):
     encoded = message.encode()
     f = Fernet(key)
     encoded_message = f.encrypt(encoded)
     return encoded_message
 
-#^ ------------------ decode function ----------------- #
+# ------------------ decode function ----------------- #
 def decode_message (key, encoded_message):
     f = Fernet(key)
     decoded_message = f.decrypt(encoded_message)
     return decoded_message
    
-#^ --------------------- test key --------------------- #
+# --------------------- test key --------------------- #
 def test_key (key):
     try:
         f = Fernet(key)
@@ -111,7 +111,7 @@ def CommandPrompt(key):
             print("|    |    |\n|    |    |"+bcolors.UNDERLINE_BLUE+"Okay canceled."+bcolors.ENDC)
             CommandPrompt(key)
 
-#^ ---------------------- read ------------------------ #
+# ---------------------- read ------------------------ #
     elif C == "read" or C == "Read" or C == "r" or C == "R":
         table = {}
         i = 1
@@ -139,18 +139,18 @@ def CommandPrompt(key):
 
         CommandPrompt(key)
 
-#^ -------------------- clear chat -------------------- #
+# -------------------- clear chat -------------------- #
     elif C == "clear chat" or C == "Clear chat" or C == "Clear Chat" or C == "c c" or C == "C c" or C =="C C":
         os.system("clear")
         print("|    |"+bcolors.UNDERLINE_BLUE+"Chat clear."+bcolors.ENDC)
         CommandPrompt(key)
 
-#^ ---------------------- help ------------------------ #
+# ---------------------- help ------------------------ #
     elif C == "?" or C == "help":
         print("|    |welcome to passManager:\n|    |for set a password try '\033[4madd\033[0m' or '\033[4mappend\033[0m',\n|    |for read your password(s) try '\033[4mread\033[0m'.\n|    |For clear the chat try '\033[4mclear chat\033[0m' or '\033[4mc c\033[0m'(short)")
         CommandPrompt(key)
 
-#^ --------------------- unknow ----------------------- #
+# --------------------- unknow ----------------------- #
     else:
         print("|    |\n|    |"+bcolors.UNDERLINE_BLUE+"sorry, '"+C+"' dosen't exist, retry\n"+bcolors.ENDC)
         CommandPrompt(key)
@@ -181,4 +181,4 @@ def __init__ ():
         test_key(key)
         CommandPrompt(key)
 __init__()
-#! --------------------------------- END FILE --------------------------------- #
+# --------------------------------- END FILE --------------------------------- #
